@@ -3,9 +3,11 @@ name: CI with Gradle
 
 on: #채우기
   pull_request:
-    branches: ["main"]
+    branches: ["main"] # 특정 브랜치에 PR 이벤트 발생 시 (열림/수정/리오픈 등) CI 실행
   push:
-    branches: ["main"]
+    branches: ["main"] # 특정 브랜치로 직접 push될 때도 CI 실행
+  workflow_dispatch: # 깃허브의 Actions 탭에서 수동 실행 버튼 제공 (필요할 때 수동으로 돌릴 수 있게)
+
 
 
 # 같은 브랜치에서 중복 실행되면 이전 빌드 취소(리소스 절약/레이스 방지)
@@ -19,7 +21,7 @@ permissions:
 
 env: # 채우기
   JAVA_VERSION: '21'
-  IMAGE: ${{secrets.DOCKER_USERNAME }}/likeklion
+  IMAGE: ${{secrets.DOCKER_USERNAME }}/likelion
 
 jobs:
   build: # 1) 빌드 전용 Job — PR과 push 모두 실행
